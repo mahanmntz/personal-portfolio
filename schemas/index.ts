@@ -3,6 +3,7 @@ import profile from "./profile";
 import project from "./project";
 import post from "./post";
 import author from "./author";
+import quote from "./quote";
 import { youtube } from "./youtube";
 import { table } from "./table";
 import blockContent from "./blockContent";
@@ -14,6 +15,7 @@ export const schemaTypes = [
   project,
   post,
   author,
+  quote,
 
   // Reference types
   blockContent,

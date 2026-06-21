@@ -99,6 +99,20 @@ export const singlePostQuery = groq`*[_type == "Post" && slug.current == $slug][
   body,
 }`;
 
+export const quotesQuery = groq`*[_type == "quote"] | order(_createdAt desc){
+  _id,
+  _createdAt,
+  song,
+  artist,
+  lyric,
+  spotifyUrl,
+  cover {
+    "image": asset->url,
+    "lqip": asset->metadata.lqip,
+    alt,
+  },
+}`;
+
 // Slug lists used by generateStaticParams() to pre-build every page at build time
 export const postPathsQuery = groq`*[_type == "Post" && defined(slug.current)]{ "slug": slug.current }`;
 export const projectPathsQuery = groq`*[_type == "project" && defined(slug.current)]{ "slug": slug.current }`;

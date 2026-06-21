@@ -3,6 +3,7 @@ import sanitylogo from "@/public/sanity.png";
 import vercellogo from "@/public/vercel.svg";
 import nextjslogo from "@/public/nextjs.svg";
 import UnmountStudio from "./Unmount";
+import { BiLogoReact } from "react-icons/bi";
 
 export default function Footer() {
   return (
@@ -42,6 +43,16 @@ export default function Footer() {
                     alt="nextjs logo"
                   />{" "}
                   Next.js
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://react.dev"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                  className="flex items-center gap-x-2 dark:text-white text-zinc-600 hover:underline"
+                >
+                  <BiLogoReact className="text-xl text-[#61DAFB]" /> React
                 </a>
               </li>
               <li>

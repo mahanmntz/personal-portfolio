@@ -20,6 +20,10 @@ export default function Navbar() {
       title: "Blog",
       href: "/blog",
     },
+    {
+      title: "Quotes",
+      href: "/quotes",
+    },
   ];
 
   return (

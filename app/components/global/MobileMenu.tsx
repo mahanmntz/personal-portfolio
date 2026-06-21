@@ -3,7 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { HiBeaker, HiBookmarkAlt, HiOutlineX, HiUser } from "react-icons/hi";
+import {
+  HiBeaker,
+  HiBookmarkAlt,
+  HiMusicNote,
+  HiOutlineX,
+  HiUser,
+} from "react-icons/hi";
 import Logo from "../../../public/logo.png";
 import LogoWhite from "../../../public/logo-white.png";
 
@@ -24,6 +30,11 @@ export default function MobileMenu() {
       title: "Blog",
       href: "/blog",
       icon: HiBookmarkAlt,
+    },
+    {
+      title: "Quotes",
+      href: "/quotes",
+      icon: HiMusicNote,
     },
   ];
 
