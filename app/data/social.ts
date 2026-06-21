@@ -1,6 +1,7 @@
 import {
   BiLinkExternal,
   BiLogoCodepen,
+  BiLogoTelegram,
   BiLogoDribbble,
   BiLogoGithub,
   BiLogoGitlab,
@@ -131,7 +132,7 @@ export const socialLinks = [
     id: 16,
     name: "Telegram",
     url: "https://t.me/mahanmntz",
-    icon: BiLinkExternal,
+    icon: BiLogoTelegram,
     status: "social",
   }
 ];

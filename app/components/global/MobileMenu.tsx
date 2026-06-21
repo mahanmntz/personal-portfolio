@@ -5,6 +5,7 @@ import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { HiBeaker, HiBookmarkAlt, HiOutlineX, HiUser } from "react-icons/hi";
 import Logo from "../../../public/logo.png";
+import LogoWhite from "../../../public/logo-white.png";
 
 export default function MobileMenu() {
   const [navShow, setNavShow] = useState(false);
@@ -53,7 +54,20 @@ export default function MobileMenu() {
       >
         <div className="flex items-center justify-between mt-6 px-8">
           <Link href="/" onClick={onToggleNav}>
-            <Image src={Logo} width={35} height={35} alt="logo" />
+            <Image
+              src={LogoWhite}
+              width={35}
+              height={35}
+              alt="logo"
+              className="block dark:hidden"
+            />
+            <Image
+              src={Logo}
+              width={35}
+              height={35}
+              alt="logo"
+              className="hidden dark:block"
+            />
           </Link>
 
           <button
