@@ -6,6 +6,7 @@ import { Slide } from "../../animation/Slide";
 import { sanityFetch } from "@/lib/sanity.client";
 import EmptyState from "../shared/EmptyState";
 import { HiArrowRight } from "react-icons/hi";
+import ScrambleText from "../../animation/ScrambleText";
 
 export default async function FeaturedProjects() {
   const projects: ProjectType[] = await sanityFetch({
@@ -18,7 +19,7 @@ export default async function FeaturedProjects() {
       <Slide delay={0.16}>
         <div className="mb-16 flex items-end justify-between gap-4">
           <h2 className="font-incognito text-4xl font-bold tracking-tight">
-            Projects
+            <ScrambleText text="Projects" />
           </h2>
           {projects.length > 0 && (
             <Link

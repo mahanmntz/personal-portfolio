@@ -7,6 +7,7 @@ import { sanityFetch } from "@/lib/sanity.client";
 import RefLink from "../shared/RefLink";
 import EmptyState from "../shared/EmptyState";
 import { RiBriefcase3Fill } from "react-icons/ri";
+import ScrambleText from "../../animation/ScrambleText";
 
 export default async function Job() {
   const jobs: JobType[] = await sanityFetch({
@@ -19,7 +20,7 @@ export default async function Job() {
       <Slide delay={0.16}>
         <div className="mb-16">
           <h2 className="font-incognito text-4xl mb-4 font-bold tracking-tight">
-            Work Experience
+            <ScrambleText text="Work Experience" />
           </h2>
         </div>
       </Slide>

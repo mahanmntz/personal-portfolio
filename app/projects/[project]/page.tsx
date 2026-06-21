@@ -16,7 +16,7 @@ type Props = {
 };
 
 const fallbackImage: string =
-  "https://res.cloudinary.com/victoreke/image/upload/v1692636087/victoreke/projects.png";
+  "/logo.png";
 
 // Static export: only build the projects returned below; 404 anything else.
 export const dynamicParams = false;
@@ -41,13 +41,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${project.name} | Project`,
-    metadataBase: new URL(`https://victoreke.com/projects/${project.slug}`),
+    metadataBase: new URL(`https://mahanmontazeri.ir/projects/${project.slug}`),
     description: project.tagline,
     openGraph: {
       images: project.coverImage
         ? urlFor(project.coverImage.image).width(1200).height(630).url()
         : fallbackImage,
-      url: `https://victoreke.com/projects/${project.slug}`,
+      url: `https://mahanmontazeri.ir/projects/${project.slug}`,
       title: project.name,
       description: project.tagline,
     },

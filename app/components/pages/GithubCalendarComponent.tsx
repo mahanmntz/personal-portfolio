@@ -1,12 +1,13 @@
 import ContributionGraph from "./ContributionGraph";
 import { Slide } from "@/app/animation/Slide";
+import ScrambleText from "@/app/animation/ScrambleText";
 
 export default function GithubCalendarComponent() {
   return (
     <section>
       <Slide delay={0.16} className="mb-8">
         <h2 className="font-incognito text-4xl font-bold tracking-tight">
-          Contribution Graph
+          <ScrambleText text="Contribution Graph" />
         </h2>
       </Slide>
 

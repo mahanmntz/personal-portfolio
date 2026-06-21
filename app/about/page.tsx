@@ -10,19 +10,20 @@ import { Slide } from "../animation/Slide";
 import { sanityFetch } from "@/lib/sanity.client";
 import RefLink from "../components/shared/RefLink";
 import NextPage from "../components/shared/NextPage";
+import Typewriter from "../animation/Typewriter";
 
 export const metadata: Metadata = {
   title: "About | Mahan Montazeri",
-  metadataBase: new URL("https://victoreke.com/about"),
+  metadataBase: new URL("https://mahanmontazeri.ir/about"),
   description:
     "Learn more about my skills, experience and technical background",
   openGraph: {
     title: "About | Mahan Montazeri",
-    url: "https://victoreke.com/about",
+    url: "https://mahanmontazeri.ir/about",
     description:
       "Learn more about my skills, experience and technical background",
     images:
-      "https://res.cloudinary.com/victoreke/image/upload/v1692635746/victoreke/og.png",
+      "/logo.png",
   },
 };
 
@@ -39,8 +40,11 @@ export default async function About() {
           <div className="order-2 lg:order-none">
             <Slide>
               <h1 className="font-incognito font-semibold tracking-tight sm:text-5xl text-3xl lg:leading-tight basis-1/2 mb-8">
-                I&apos;m {profile?.fullName ?? "John Doe"}. I live in{" "}
-                {profile?.location ?? "'X'"}, where I build the future.
+                <Typewriter
+                  text={`I'm ${profile?.fullName ?? "John Doe"}. I live in ${
+                    profile?.location ?? "'X'"
+                  }, where I build the future.`}
+                />
               </h1>
 
               <div className="dark:text-zinc-400 text-zinc-600 leading-relaxed">

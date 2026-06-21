@@ -47,6 +47,9 @@ export default function ContributionGraph() {
           theme={github}
           colorScheme={serverTheme}
           blockSize={13}
+          blockMargin={4}
+          fontSize={14}
+          showWeekdayLabels
           year={calendarYear}
         />
       </div>

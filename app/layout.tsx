@@ -6,6 +6,8 @@ import { incognito } from "./assets/font/font";
 import { gitlabmono } from "./assets/font/font";
 import Navbar from "./components/global/Navbar";
 import Footer from "./components/global/Footer";
+import BottomNav from "./components/global/BottomNav";
+import SwipeNavigation from "./components/global/SwipeNavigation";
 import { Providers } from "./providers";
 
 const inter = Inter({
@@ -18,9 +20,9 @@ const options = {
   title: "Mahan Montazeri | Software Developer",
   description:
     "Mahan Montazeri is a Software Developer and Technical Writer who is passionate about building solutions and contributing to open source communities",
-  url: "https://victoreke.com",
+  url: "https://mahanmontazeri.ir",
   ogImage:
-    "https://res.cloudinary.com/victoreke/image/upload/v1692635746/victoreke/og.png",
+    "/logo.png",
 };
 
 export const metadata: Metadata = {
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: options.title,
     url: options.url,
-    siteName: "victoreke.com",
+    siteName: "Mahan Montazeri",
     locale: "en-US",
     type: "website",
     description: options.description,
@@ -52,12 +54,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${incognito.variable} ${inter.className} ${gitlabmono.variable} dark:bg-zinc-900 bg-white dark:text-white text-zinc-700`}
+        className={`${incognito.variable} ${inter.className} ${gitlabmono.variable} dark:bg-zinc-900 bg-white dark:text-white text-zinc-700 pb-28 md:pb-0`}
       >
         <Providers>
           <Navbar />
           {children}
           <Footer />
+          <BottomNav />
+          <SwipeNavigation />
         </Providers>
       </body>
       <Script

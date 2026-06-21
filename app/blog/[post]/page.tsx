@@ -18,6 +18,7 @@ import { HiCalendar, HiChat } from "react-icons/hi";
 import { sanityFetch } from "@/lib/sanity.client";
 import { readTime } from "@/app/utils/readTime";
 import PageHeading from "@/app/components/shared/PageHeading";
+import { socialHandle } from "@/app/utils/socialHandle";
 
 type Props = {
   params: {
@@ -26,7 +27,7 @@ type Props = {
 };
 
 const fallbackImage: string =
-  "https://res.cloudinary.com/victoreke/image/upload/v1692636087/victoreke/blog.png";
+  "/logo.png";
 
 // Static export: only build the posts returned below; 404 anything else.
 export const dynamicParams = false;
@@ -55,23 +56,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${post.title}`,
-    metadataBase: new URL(`https://victoreke.com/blog/${post.slug}`),
+    metadataBase: new URL(`https://mahanmontazeri.ir/blog/${post.slug}`),
     description: post.description,
     publisher: post.author.name,
     keywords: post.tags,
     alternates: {
       canonical:
-        post.canonicalLink || `https://victoreke.com/blog/${post.slug}`,
+        post.canonicalLink || `https://mahanmontazeri.ir/blog/${post.slug}`,
     },
     openGraph: {
       images:
         urlFor(post.coverImage?.image).width(1200).height(630).url() ||
         fallbackImage,
-      url: `https://victoreke.com/blog/${post.slug}`,
+      url: `https://mahanmontazeri.ir/blog/${post.slug}`,
       title: post.title,
       description: post.description,
       type: "article",
-      siteName: "victoreke.com",
+      siteName: "Mahan Montazeri",
       authors: post.author.name,
       tags: post.tags,
       publishedTime: post._createdAt,
@@ -83,8 +84,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images:
         urlFor(post.coverImage?.image).width(680).height(340).url() ||
         fallbackImage,
-      creator: `@${post.author.twitterUrl.split("twitter.com/")[1]}`,
-      site: `@${post.author.twitterUrl.split("twitter.com/")[1]}`,
+      creator: socialHandle(post.author?.twitterUrl)
+        ? `@${socialHandle(post.author.twitterUrl)}`
+        : undefined,
+      site: socialHandle(post.author?.twitterUrl)
+        ? `@${socialHandle(post.author.twitterUrl)}`
+        : undefined,
       card: "summary_large_image",
     },
   };
@@ -187,14 +192,16 @@ export default async function Post({ params }: Props) {
                   <h3 className="font-semibold text-lg tracking-tight">
                     {post.author.name}
                   </h3>
-                  <a
-                    href={post.author.twitterUrl}
-                    className="text-blue-500 text-sm"
-                    rel="noreferrer noopener"
-                    target="_blank"
-                  >
-                    {`@${post.author.twitterUrl.split("twitter.com/")[1]}`}
-                  </a>
+                  {socialHandle(post.author?.twitterUrl) && (
+                    <a
+                      href={post.author.twitterUrl}
+                      className="text-blue-500 text-sm"
+                      rel="noreferrer noopener"
+                      target="_blank"
+                    >
+                      @{socialHandle(post.author.twitterUrl)}
+                    </a>
+                  )}
                 </div>
               </address>
             </section>

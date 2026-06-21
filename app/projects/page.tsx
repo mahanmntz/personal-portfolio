@@ -10,14 +10,14 @@ import PageHeading from "../components/shared/PageHeading";
 
 export const metadata: Metadata = {
   title: "Project | Mahan Montazeri",
-  metadataBase: new URL("https://victoreke.com/projects"),
+  metadataBase: new URL("https://mahanmontazeri.ir/projects"),
   description: "Explore projects built by Mahan Montazeri",
   openGraph: {
     title: "Projects | Mahan Montazeri",
-    url: "https://victoreke.com/projects",
+    url: "https://mahanmontazeri.ir/projects",
     description: "Explore projects built by Mahan Montazeri",
     images:
-      "https://res.cloudinary.com/victoreke/image/upload/v1692636087/victoreke/projects.png",
+      "/logo.png",
   },
 };
 
