@@ -26,7 +26,7 @@ export default function BottomNav() {
             href={link.href}
             aria-label={link.title}
             aria-current={isActive(link.href) ? "page" : undefined}
-            className="relative grid place-items-center h-11 w-11 rounded-full"
+            className="relative grid place-items-center h-11 w-11 rounded-full transition-transform duration-150 active:scale-90"
           >
             {isActive(link.href) && (
               <MotionSpan

@@ -56,3 +56,81 @@ h4 {
     animation: none !important;
   }
 }
+
+/* ===== Tech-stack marquee ===== */
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.marquee-track {
+  width: max-content;
+}
+.animate-marquee-left {
+  animation: marquee-left 32s linear infinite;
+}
+.animate-marquee-right {
+  animation: marquee-right 32s linear infinite;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+.group\/marquee:hover .animate-marquee-left,
+.group\/marquee:hover .animate-marquee-right {
+  animation-play-state: paused;
+}
+
+/* ===== Cursor glow + click ripple ===== */
+.cursor-glow {
+  background: radial-gradient(circle, rgba(51, 224, 146, 0.45), transparent 60%);
+  mix-blend-mode: screen;
+}
+.cursor-ripple {
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  margin-top: -8px;
+  border-radius: 9999px;
+  border: 2px solid rgba(51, 224, 146, 0.7);
+  animation: cursor-ripple-anim 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes cursor-ripple-anim {
+  from {
+    transform: scale(0);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(11);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cursor-ripple {
+    animation: none;
+    display: none;
+  }
+}

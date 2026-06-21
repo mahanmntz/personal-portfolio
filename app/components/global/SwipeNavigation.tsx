@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { navLinks } from "@/app/data/nav";
 
-// Lets you swipe left/right (touch) to move to the next/previous page.
+// Drag/swipe left-right to move between pages. Uses Pointer Events so it works
+// with both touch (mobile) and mouse/trackpad (desktop).
 export default function SwipeNavigation() {
   const pathname = usePathname();
   const router = useRouter();
@@ -14,39 +15,49 @@ export default function SwipeNavigation() {
     let startX = 0;
     let startY = 0;
     let tracking = false;
+    let pointerType = "touch";
 
-    const onStart = (e: TouchEvent) => {
-      if (e.touches.length !== 1) return;
-
-      // Don't hijack swipes that begin inside a horizontally scrollable element
-      // (e.g. the contribution graph, code blocks, tables).
-      let el = e.target as HTMLElement | null;
+    const startsInScrollableX = (target: EventTarget | null) => {
+      let el = target as HTMLElement | null;
       while (el && el !== document.body) {
         const style = window.getComputedStyle(el);
         if (
           el.scrollWidth > el.clientWidth + 4 &&
           /(auto|scroll)/.test(style.overflowX)
         ) {
-          tracking = false;
-          return;
+          return true;
         }
         el = el.parentElement;
       }
+      return false;
+    };
 
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
+    const onDown = (e: PointerEvent) => {
+      if (e.button !== 0 || startsInScrollableX(e.target)) {
+        tracking = false;
+        return;
+      }
+      startX = e.clientX;
+      startY = e.clientY;
+      pointerType = e.pointerType;
       tracking = true;
     };
 
-    const onEnd = (e: TouchEvent) => {
+    const onUp = (e: PointerEvent) => {
       if (!tracking) return;
       tracking = false;
 
-      const dx = e.changedTouches[0].clientX - startX;
-      const dy = e.changedTouches[0].clientY - startY;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      const threshold = pointerType === "mouse" ? 130 : 80;
 
-      // Require a clear, mostly-horizontal swipe.
-      if (Math.abs(dx) < 80 || Math.abs(dx) < Math.abs(dy) * 2) return;
+      if (Math.abs(dx) < threshold || Math.abs(dx) < Math.abs(dy) * 2) return;
+      // Don't navigate if the mouse drag was actually a text selection.
+      if (
+        pointerType === "mouse" &&
+        (window.getSelection()?.toString().length ?? 0) > 0
+      )
+        return;
 
       const index = navLinks.findIndex((l) =>
         l.href === "/" ? pathname === "/" : pathname.startsWith(l.href)
@@ -60,11 +71,11 @@ export default function SwipeNavigation() {
       }
     };
 
-    window.addEventListener("touchstart", onStart, { passive: true });
-    window.addEventListener("touchend", onEnd, { passive: true });
+    window.addEventListener("pointerdown", onDown, { passive: true });
+    window.addEventListener("pointerup", onUp, { passive: true });
     return () => {
-      window.removeEventListener("touchstart", onStart);
-      window.removeEventListener("touchend", onEnd);
+      window.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointerup", onUp);
     };
   }, [pathname, router]);
 

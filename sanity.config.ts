@@ -7,8 +7,8 @@ import { table } from "@sanity/table";
 import { projectId, dataset } from "./lib/env.api";
 
 export default defineConfig({
-  name: "victoreke",
-  title: "victoreke.com",
+  name: "mahan-montazeri",
+  title: "Mahan Montazeri",
   basePath: "/studio",
   projectId,
   dataset,

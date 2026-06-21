@@ -3,6 +3,7 @@ import type { ProfileType } from "@/types";
 import HeroSvg from "./assets/icons/HeroSvg";
 import Job from "./components/pages/Job";
 import FeaturedProjects from "./components/pages/FeaturedProjects";
+import TechStack from "./components/pages/TechStack";
 import Social from "./components/shared/Social";
 import NextPage from "./components/shared/NextPage";
 import { Slide } from "./animation/Slide";
@@ -37,6 +38,7 @@ export default async function Home() {
       </section>
       <ContributionGraph />
       <FeaturedProjects />
+      <TechStack />
       <Job />
       <Slide delay={0.2}>
         <NextPage

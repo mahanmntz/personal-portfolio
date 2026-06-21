@@ -8,6 +8,7 @@ import Navbar from "./components/global/Navbar";
 import Footer from "./components/global/Footer";
 import BottomNav from "./components/global/BottomNav";
 import SwipeNavigation from "./components/global/SwipeNavigation";
+import CursorEffects from "./components/global/CursorEffects";
 import { Providers } from "./providers";
 
 const inter = Inter({
@@ -62,6 +63,7 @@ export default function RootLayout({
           <Footer />
           <BottomNav />
           <SwipeNavigation />
+          <CursorEffects />
         </Providers>
       </body>
       <Script

@@ -65,7 +65,7 @@ export default async function About() {
               <div className="sticky top-10">
                 {profile?.profileImage.image ? (
                   <Image
-                    className="rounded-2xl mb-4 object-cover max-h-96 min-h-96 bg-top"
+                    className="rounded-2xl mb-4 object-cover max-h-96 min-h-96 bg-top transition-transform duration-300 ease-out md:hover:scale-[1.05] md:hover:-rotate-2"
                     src={profile?.profileImage.image}
                     width={400}
                     height={400}
