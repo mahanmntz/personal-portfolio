@@ -2,7 +2,9 @@ import { profileQuery } from "@/lib/sanity.query";
 import type { ProfileType } from "@/types";
 import HeroSvg from "./assets/icons/HeroSvg";
 import Job from "./components/pages/Job";
+import FeaturedProjects from "./components/pages/FeaturedProjects";
 import Social from "./components/shared/Social";
+import NextPage from "./components/shared/NextPage";
 import { Slide } from "./animation/Slide";
 import { sanityFetch } from "@/lib/sanity.client";
 import ContributionGraph from "./components/pages/GithubCalendarComponent";
@@ -34,7 +36,15 @@ export default async function Home() {
         </Slide>
       </section>
       <ContributionGraph />
+      <FeaturedProjects />
       <Job />
+      <Slide delay={0.2}>
+        <NextPage
+          href="/about"
+          eyebrow="Curious who's behind all this?"
+          title="More about me"
+        />
+      </Slide>
     </main>
   );
 }

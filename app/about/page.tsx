@@ -9,6 +9,7 @@ import Usage from "../components/pages/Usage";
 import { Slide } from "../animation/Slide";
 import { sanityFetch } from "@/lib/sanity.client";
 import RefLink from "../components/shared/RefLink";
+import NextPage from "../components/shared/NextPage";
 
 export const metadata: Metadata = {
   title: "About | Mahan Montazeri",
@@ -108,6 +109,13 @@ export default async function About() {
         </section>
         <Slide delay={0.14}>
           <Usage />
+        </Slide>
+        <Slide delay={0.16}>
+          <NextPage
+            href="/projects"
+            eyebrow="Up next — see what I've built"
+            title="Explore my projects"
+          />
         </Slide>
       </div>
     </main>

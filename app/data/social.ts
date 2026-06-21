@@ -32,7 +32,7 @@ export const socialLinks = [
   {
     id: 2,
     name: "X",
-    url: "https://twitter.com/mahanmntz",
+    url: "https://x.com/mahanmntz",
     icon: FaSquareXTwitter,
     status: "social",
   },
@@ -127,4 +127,11 @@ export const socialLinks = [
     icon: SiLinktree,
     status: "social",
   },
+  {
+    id: 16,
+    name: "Telegram",
+    url: "https://t.me/mahanmntz",
+    icon: BiLinkExternal,
+    status: "social",
+  }
 ];
