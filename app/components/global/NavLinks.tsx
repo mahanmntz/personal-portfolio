@@ -4,6 +4,10 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { navLinks } from "@/app/data/nav";
 
+// framer-motion v10 + @types/react v19 drop `className` from the inferred props;
+// alias keeps it usable without a type error.
+const MotionSpan: any = motion.span;
+
 export default function NavLinks() {
   const pathname = usePathname();
 
@@ -24,7 +28,7 @@ export default function NavLinks() {
               }`}
             >
               {isActive(link.href) && (
-                <motion.span
+                <MotionSpan
                   layoutId="nav-active-pill"
                   className="absolute inset-0 -z-10 rounded-full dark:bg-zinc-800 bg-zinc-100 border dark:border-zinc-700/60 border-zinc-200"
                   transition={{ type: "spring", stiffness: 380, damping: 32 }}

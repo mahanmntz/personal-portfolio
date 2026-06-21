@@ -4,6 +4,10 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { navLinks } from "@/app/data/nav";
 
+// framer-motion v10 + @types/react v19 drop `className` from the inferred props;
+// alias keeps it usable without a type error.
+const MotionSpan: any = motion.span;
+
 export default function BottomNav() {
   const pathname = usePathname();
 
@@ -25,7 +29,7 @@ export default function BottomNav() {
             className="relative grid place-items-center h-11 w-11 rounded-full"
           >
             {isActive(link.href) && (
-              <motion.span
+              <MotionSpan
                 layoutId="bottom-active-pill"
                 className="absolute inset-0 rounded-full dark:bg-primary-color/15 bg-tertiary-color/10 border dark:border-primary-color/30 border-tertiary-color/20"
                 transition={{ type: "spring", stiffness: 380, damping: 32 }}
