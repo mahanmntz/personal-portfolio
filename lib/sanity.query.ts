@@ -102,15 +102,10 @@ export const singlePostQuery = groq`*[_type == "Post" && slug.current == $slug][
 export const quotesQuery = groq`*[_type == "quote"] | order(_createdAt desc){
   _id,
   _createdAt,
-  song,
-  artist,
   lyric,
+  artist,
+  song,
   spotifyUrl,
-  cover {
-    "image": asset->url,
-    "lqip": asset->metadata.lqip,
-    alt,
-  },
 }`;
 
 // Slug lists used by generateStaticParams() to pre-build every page at build time

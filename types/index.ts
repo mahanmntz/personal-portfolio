@@ -101,13 +101,8 @@ export type HeroeType = {
 export type QuoteType = {
   _id: string;
   _createdAt: string;
-  song: string;
-  artist: string;
   lyric: string;
-  spotifyUrl: string;
-  cover: {
-    image: string;
-    lqip: string;
-    alt: string | null;
-  };
+  artist: string;
+  song?: string;
+  spotifyUrl?: string;
 };

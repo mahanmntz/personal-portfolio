@@ -76,7 +76,7 @@ function Row({ items, direction }: { items: Tech[]; direction: "left" | "right" 
 
 export default function TechStack() {
   return (
-    <section className="mt-32">
+    <section className="mt-20 md:mt-28">
       <Slide delay={0.16}>
         <h2 className="font-incognito text-4xl font-bold tracking-tight mb-10">
           <ScrambleText text="Tech Stack" />

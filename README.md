@@ -94,11 +94,6 @@ build for you. To update the live site after editing content, trigger a redeploy
 | [`schemas`](schemas) | Content types (schemas) |
 | [`app/data/social.ts`](app/data/social.ts) | Social links config |
 
-## Credits
-
-This site is based on the open-source [victoreke.com][original] portfolio template by
-[Victor Eke][victor] (MIT-licensed). Huge thanks for sharing it.
-
 ## License
 
 MIT.
@@ -114,5 +109,3 @@ MIT.
 [reactrefractor]: https://github.com/rexxars/react-refractor
 [giscus]: https://giscus.app
 [sanity-manage]: https://sanity.io/manage
-[original]: https://github.com/Evavic44/victoreke.com
-[victor]: https://github.com/Evavic44

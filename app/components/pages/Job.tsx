@@ -16,7 +16,7 @@ export default async function Job() {
   });
 
   return (
-    <section className="mt-32">
+    <section className="mt-20 md:mt-28">
       <Slide delay={0.16}>
         <div className="mb-16">
           <h2 className="font-incognito text-4xl mb-4 font-bold tracking-tight">

@@ -15,7 +15,7 @@ export default async function FeaturedProjects() {
   });
 
   return (
-    <section className="mt-32">
+    <section className="mt-20 md:mt-28">
       <Slide delay={0.16}>
         <div className="mb-16 flex items-end justify-between gap-4">
           <h2 className="font-incognito text-4xl font-bold tracking-tight">

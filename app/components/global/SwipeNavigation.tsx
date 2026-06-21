@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { navLinks } from "@/app/data/nav";
 
-// Drag/swipe left-right to move between pages. Uses Pointer Events so it works
-// with both touch (mobile) and mouse/trackpad (desktop).
+// Drag/swipe left-right to move between pages. Uses Pointer Events (touch +
+// mouse) and detects the swipe *during* the move so mobile browsers don't
+// cancel it first.
 export default function SwipeNavigation() {
   const pathname = usePathname();
   const router = useRouter();
@@ -15,6 +16,7 @@ export default function SwipeNavigation() {
     let startX = 0;
     let startY = 0;
     let tracking = false;
+    let fired = false;
     let pointerType = "touch";
 
     const startsInScrollableX = (target: EventTarget | null) => {
@@ -32,7 +34,20 @@ export default function SwipeNavigation() {
       return false;
     };
 
+    const go = (dx: number) => {
+      const index = navLinks.findIndex((l) =>
+        l.href === "/" ? pathname === "/" : pathname.startsWith(l.href)
+      );
+      if (index === -1) return;
+      if (dx < 0 && index < navLinks.length - 1) {
+        router.push(navLinks[index + 1].href);
+      } else if (dx > 0 && index > 0) {
+        router.push(navLinks[index - 1].href);
+      }
+    };
+
     const onDown = (e: PointerEvent) => {
+      fired = false;
       if (e.button !== 0 || startsInScrollableX(e.target)) {
         tracking = false;
         return;
@@ -43,39 +58,42 @@ export default function SwipeNavigation() {
       tracking = true;
     };
 
-    const onUp = (e: PointerEvent) => {
-      if (!tracking) return;
-      tracking = false;
-
+    const onMove = (e: PointerEvent) => {
+      if (!tracking || fired) return;
       const dx = e.clientX - startX;
       const dy = e.clientY - startY;
-      const threshold = pointerType === "mouse" ? 130 : 80;
 
-      if (Math.abs(dx) < threshold || Math.abs(dx) < Math.abs(dy) * 2) return;
-      // Don't navigate if the mouse drag was actually a text selection.
-      if (
-        pointerType === "mouse" &&
-        (window.getSelection()?.toString().length ?? 0) > 0
-      )
+      // Vertical scroll wins — stop tracking this gesture.
+      if (Math.abs(dy) > 44 && Math.abs(dy) > Math.abs(dx)) {
+        tracking = false;
         return;
-
-      const index = navLinks.findIndex((l) =>
-        l.href === "/" ? pathname === "/" : pathname.startsWith(l.href)
-      );
-      if (index === -1) return;
-
-      if (dx < 0 && index < navLinks.length - 1) {
-        router.push(navLinks[index + 1].href);
-      } else if (dx > 0 && index > 0) {
-        router.push(navLinks[index - 1].href);
+      }
+      const threshold = pointerType === "mouse" ? 150 : 70;
+      if (Math.abs(dx) >= threshold && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        if (
+          pointerType === "mouse" &&
+          (window.getSelection()?.toString().length ?? 0) > 0
+        )
+          return;
+        fired = true;
+        tracking = false;
+        go(dx);
       }
     };
 
+    const onEnd = () => {
+      tracking = false;
+    };
+
     window.addEventListener("pointerdown", onDown, { passive: true });
-    window.addEventListener("pointerup", onUp, { passive: true });
+    window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("pointerup", onEnd, { passive: true });
+    window.addEventListener("pointercancel", onEnd, { passive: true });
     return () => {
       window.removeEventListener("pointerdown", onDown);
-      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onEnd);
+      window.removeEventListener("pointercancel", onEnd);
     };
   }, [pathname, router]);
 

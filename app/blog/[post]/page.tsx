@@ -19,6 +19,7 @@ import { sanityFetch } from "@/lib/sanity.client";
 import { readTime } from "@/app/utils/readTime";
 import PageHeading from "@/app/components/shared/PageHeading";
 import { socialHandle } from "@/app/utils/socialHandle";
+import ReadingMode from "@/app/components/shared/ReadingMode";
 
 type Props = {
   params: {
@@ -109,6 +110,14 @@ export default async function Post({ params }: Props) {
     notFound();
   }
 
+  // Plain-text paragraphs for the focused Reading Mode experience.
+  const paragraphs = (post.body ?? [])
+    .filter((block: any) => block._type === "block")
+    .map((block: any) =>
+      (block.children ?? []).map((child: any) => child.text).join("")
+    )
+    .filter((text: string) => text.trim().length > 0);
+
   return (
     <main className="max-w-7xl mx-auto md:px-16 px-6">
       <header>
@@ -150,6 +159,7 @@ export default async function Post({ params }: Props) {
                 <BiSolidTime />
                 <div className="">{readTime(words)}</div>
               </div>
+              <ReadingMode title={post.title} paragraphs={paragraphs} />
             </div>
 
             <PageHeading title={post.title} description={post.description} />
