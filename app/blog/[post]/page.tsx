@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { PostType } from "@/types";
-import { singlePostQuery } from "@/lib/sanity.query";
+import { singlePostQuery, postPathsQuery } from "@/lib/sanity.query";
 import { PortableText, toPlainText } from "@portabletext/react";
 import { CustomPortableText } from "../../components/shared/CustomPortableText";
 import { BiChevronRight, BiSolidTime, BiTime } from "react-icons/bi";
@@ -27,6 +27,18 @@ type Props = {
 
 const fallbackImage: string =
   "https://res.cloudinary.com/victoreke/image/upload/v1692636087/victoreke/blog.png";
+
+// Static export: only build the posts returned below; 404 anything else.
+export const dynamicParams = false;
+
+// Pre-build a static page for every published post at build time
+export async function generateStaticParams() {
+  const posts: { slug: string }[] = await sanityFetch({
+    query: postPathsQuery,
+    tags: ["Post"],
+  });
+  return posts.map((post) => ({ post: post.slug }));
+}
 
 // Dynamic metadata for SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

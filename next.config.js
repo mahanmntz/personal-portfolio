@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-module.exports = {
+const nextConfig = {
+  // Static export only for production builds (./out). In dev we keep the normal
+  // server so the embedded Sanity Studio (/studio/*) keeps working locally.
+  output: process.env.NODE_ENV === "production" ? "export" : undefined,
   images: {
+    // Static export has no Node image optimizer, so serve images as-is.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -16,3 +19,5 @@ module.exports = {
     ],
   },
 };
+
+module.exports = nextConfig;

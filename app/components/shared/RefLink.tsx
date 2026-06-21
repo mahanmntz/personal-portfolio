@@ -15,7 +15,7 @@ export default function RefLink({
 }) {
   return (
     <Link
-      href={href + "?ref=victoreke.com"}
+      href={href + "?ref=mahanmontazeri.ir"}
       rel="noopener"
       target={target}
       className={className}

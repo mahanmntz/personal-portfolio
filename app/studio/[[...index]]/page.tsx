@@ -1,9 +1,13 @@
-// This is where the studio component is mounted.
-"use client";
+// Server wrapper for the Studio so the route can be statically exported
+// (output: "export"). The actual Studio UI lives in StudioClient ("use client").
+import { StudioClient } from "./StudioClient";
 
-import { NextStudio } from "next-sanity/studio";
-import config from "@/sanity.config";
+export const dynamic = "force-static";
 
-export default function Studio() {
-  return <NextStudio config={config} />;
+export function generateStaticParams() {
+  return [{ index: [] }];
+}
+
+export default function StudioPage() {
+  return <StudioClient />;
 }

@@ -99,4 +99,6 @@ export const singlePostQuery = groq`*[_type == "Post" && slug.current == $slug][
   body,
 }`;
 
-export const heroesQuery = groq`*[_type == "heroe"] | order(_createdAt asc) { _id, _createdAt, name, url, met }`;
+// Slug lists used by generateStaticParams() to pre-build every page at build time
+export const postPathsQuery = groq`*[_type == "Post" && defined(slug.current)]{ "slug": slug.current }`;
+export const projectPathsQuery = groq`*[_type == "project" && defined(slug.current)]{ "slug": slug.current }`;

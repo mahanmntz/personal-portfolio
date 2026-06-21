@@ -11,128 +11,120 @@ import {
   BiLogoUnsplash,
   BiLogoYoutube,
 } from "react-icons/bi";
-import { FaFreeCodeCamp, FaProductHunt } from "react-icons/fa";
-import { SiCodewars } from "react-icons/si";
-import { FaHashnode, FaHashtag, FaSquareXTwitter } from "react-icons/fa6";
+import { FaProductHunt } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import { SiCodewars, SiLinktree } from "react-icons/si";
 
+/**
+ * ❇️  سوشال مدیای خودت رو همین‌جا تنظیم کن.
+ *  - فقط `url` هر آیتم رو با لینک خودت عوض کن (الان روی yousername = mahanmntz گذاشته شده).
+ *  - آیتمی که نمی‌خوای، کل بلاکش رو پاک کن.
+ *  - `status: "social"` → بخش شبکه‌های اجتماعی.
+ */
 export const socialLinks = [
   {
     id: 1,
     name: "GitHub",
-    url: "https://github.com/Evavic44",
+    url: "https://github.com/mahanmntz",
     icon: BiLogoGithub,
     status: "social",
   },
   {
     id: 2,
     name: "X",
-    url: "https://twitter.com/victorekea",
+    url: "https://twitter.com/mahanmntz",
     icon: FaSquareXTwitter,
     status: "social",
   },
   {
     id: 3,
     name: "Linkedin",
-    url: "https://linkedin.com/in/victorekeawa",
+    url: "https://linkedin.com/in/mahanmntz",
     icon: BiLogoLinkedinSquare,
     status: "social",
   },
   {
     id: 4,
     name: "Codepen",
-    url: "https://codepen.io/evavic44",
+    url: "https://codepen.io/mahanmntz",
     icon: BiLogoCodepen,
     status: "social",
   },
   {
     id: 5,
     name: "Dribbble",
-    url: "https://dribbble.com/victoreke",
+    url: "https://dribbble.com/mahanmntz",
     icon: BiLogoDribbble,
     status: "social",
   },
   {
     id: 6,
     name: "Instagram",
-    url: "https://instagram.com/victorekea",
+    url: "https://instagram.com/mahanmntz",
     icon: BiLogoInstagram,
     status: "social",
   },
   {
     id: 7,
     name: "Steam",
-    url: "https://steamcommunity.com/id/victoreke/",
+    url: "https://steamcommunity.com/id/mahanmntz",
     icon: BiLogoSteam,
     status: "social",
   },
   {
     id: 8,
     name: "Unsplash",
-    url: "https://unsplash.com/@victoreke",
+    url: "https://unsplash.com/@mahanmntz",
     icon: BiLogoUnsplash,
     status: "social",
   },
   {
     id: 9,
-    name: "FreeCodeCamp",
-    url: "https://freecodecamp.org/news/author/victoreke/",
-    icon: FaFreeCodeCamp,
-    status: "publication",
-  },
-  {
-    id: 10,
-    name: "Hashnode",
-    url: "https://eke.hashnode.dev",
-    icon: FaHashnode,
-    status: "publication",
-  },
-  {
-    id: 11,
-    name: "Sanity",
-    url: "https://www.sanity.io/exchange/community/victoreke",
-    icon: FaHashtag,
-    status: "publication",
-  },
-  {
-    id: 12,
     name: "Youtube",
-    url: "https://youtube.com/@victorekea",
+    url: "https://youtube.com/@mahanmntz",
     icon: BiLogoYoutube,
     status: "social",
   },
   {
-    id: 13,
+    id: 10,
     name: "Daily.dev",
-    url: "https://app.daily.dev/eke",
+    url: "https://app.daily.dev/mahanmntz",
     icon: BiLinkExternal,
     status: "social",
   },
   {
-    id: 14,
+    id: 11,
     name: "Producthunt",
-    url: "https://www.producthunt.com/@victorekea",
+    url: "https://www.producthunt.com/@mahanmntz",
     icon: FaProductHunt,
     status: "social",
   },
   {
-    id: 15,
+    id: 12,
     name: "Stackoverflow",
-    url: "https://stackoverflow.com/users/14021166/victor-eke",
+    url: "https://stackoverflow.com/users/mahanmntz",
     icon: BiLogoStackOverflow,
     status: "social",
   },
   {
-    id: 16,
+    id: 13,
     name: "Codewars",
-    url: "https://www.codewars.com/users/victoreke",
+    url: "https://www.codewars.com/users/mahanmntz",
     icon: SiCodewars,
     status: "social",
   },
   {
-    id: 17,
+    id: 14,
     name: "Gitlab",
-    url: "https://gitlab.com/victoreke",
+    url: "https://gitlab.com/mahanmntz",
     icon: BiLogoGitlab,
+    status: "social",
+  },
+  {
+    id: 15,
+    name: "Linktree",
+    url: "https://linktr.ee/mahanmntz",
+    icon: SiLinktree,
     status: "social",
   },
 ];

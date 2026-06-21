@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Metadata } from "next";
-import { singleProjectQuery } from "@/lib/sanity.query";
+import { singleProjectQuery, projectPathsQuery } from "@/lib/sanity.query";
 import type { ProjectType } from "@/types";
 import { PortableText } from "@portabletext/react";
 import { CustomPortableText } from "@/app/components/shared/CustomPortableText";
@@ -17,6 +17,18 @@ type Props = {
 
 const fallbackImage: string =
   "https://res.cloudinary.com/victoreke/image/upload/v1692636087/victoreke/projects.png";
+
+// Static export: only build the projects returned below; 404 anything else.
+export const dynamicParams = false;
+
+// Pre-build a static page for every project at build time
+export async function generateStaticParams() {
+  const projects: { slug: string }[] = await sanityFetch({
+    query: projectPathsQuery,
+    tags: ["project"],
+  });
+  return projects.map((project) => ({ project: project.slug }));
+}
 
 // Dynamic metadata for SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
