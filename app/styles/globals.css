@@ -34,3 +34,25 @@ h4 {
     stroke-dashoffset: 12433.8193359375;
   }
 }
+
+/* ===== Theme toggle: liquid circular reveal (View Transitions API) ===== */
+::view-transition-old(root),
+::view-transition-new(root) {
+  /* we drive the reveal ourselves from the toggle button, so kill the default fade */
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2147483646;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
