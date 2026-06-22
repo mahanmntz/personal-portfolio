@@ -103,6 +103,4 @@ export type QuoteType = {
   _createdAt: string;
   lyric: string;
   artist: string;
-  song?: string;
-  spotifyUrl?: string;
 };

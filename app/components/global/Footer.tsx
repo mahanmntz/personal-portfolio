@@ -4,6 +4,7 @@ import vercellogo from "@/public/vercel.svg";
 import nextjslogo from "@/public/nextjs.svg";
 import UnmountStudio from "./Unmount";
 import { BiLogoReact } from "react-icons/bi";
+import { SiCloudflare } from "react-icons/si";
 
 export default function Footer() {
   return (
@@ -69,6 +70,16 @@ export default function Footer() {
                     alt="vercel logo"
                   />{" "}
                   Vercel
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.cloudflare.com"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                  className="flex items-center gap-x-2 dark:text-white text-zinc-600 hover:underline"
+                >
+                  <SiCloudflare className="text-xl text-[#F38020]" /> Cloudflare
                 </a>
               </li>
             </ul>

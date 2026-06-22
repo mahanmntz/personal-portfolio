@@ -3,9 +3,7 @@ import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { navLinks } from "@/app/data/nav";
 
-// Drag/swipe left-right to move between pages. Uses Pointer Events (touch +
-// mouse) and detects the swipe *during* the move so mobile browsers don't
-// cancel it first.
+// Swipe left/right (touch) or click-drag (mouse) to move between pages.
 export default function SwipeNavigation() {
   const pathname = usePathname();
   const router = useRouter();
@@ -15,9 +13,8 @@ export default function SwipeNavigation() {
 
     let startX = 0;
     let startY = 0;
-    let tracking = false;
-    let fired = false;
-    let pointerType = "touch";
+    let startT = 0;
+    let active = false;
 
     const startsInScrollableX = (target: EventTarget | null) => {
       let el = target as HTMLElement | null;
@@ -34,7 +31,28 @@ export default function SwipeNavigation() {
       return false;
     };
 
-    const go = (dx: number) => {
+    const begin = (x: number, y: number, target: EventTarget | null) => {
+      if (startsInScrollableX(target)) {
+        active = false;
+        return;
+      }
+      startX = x;
+      startY = y;
+      startT = Date.now();
+      active = true;
+    };
+
+    const finish = (x: number, y: number) => {
+      if (!active) return;
+      active = false;
+      const dx = x - startX;
+      const dy = y - startY;
+      const dt = Date.now() - startT;
+
+      if (Math.abs(dx) < 55) return; // not far enough
+      if (Math.abs(dx) < Math.abs(dy) * 1.2) return; // not horizontal enough
+      if (dt > 1000) return; // too slow to be a swipe
+
       const index = navLinks.findIndex((l) =>
         l.href === "/" ? pathname === "/" : pathname.startsWith(l.href)
       );
@@ -46,54 +64,41 @@ export default function SwipeNavigation() {
       }
     };
 
-    const onDown = (e: PointerEvent) => {
-      fired = false;
-      if (e.button !== 0 || startsInScrollableX(e.target)) {
-        tracking = false;
+    // Touch (mobile)
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length !== 1) {
+        active = false;
         return;
       }
-      startX = e.clientX;
-      startY = e.clientY;
-      pointerType = e.pointerType;
-      tracking = true;
+      begin(e.touches[0].clientX, e.touches[0].clientY, e.target);
+    };
+    const onTouchEnd = (e: TouchEvent) => {
+      const t = e.changedTouches[0];
+      if (t) finish(t.clientX, t.clientY);
     };
 
-    const onMove = (e: PointerEvent) => {
-      if (!tracking || fired) return;
-      const dx = e.clientX - startX;
-      const dy = e.clientY - startY;
-
-      // Vertical scroll wins — stop tracking this gesture.
-      if (Math.abs(dy) > 70 && Math.abs(dy) > Math.abs(dx) * 1.2) {
-        tracking = false;
+    // Mouse drag (desktop)
+    const onMouseDown = (e: MouseEvent) => {
+      if (e.button !== 0) return;
+      begin(e.clientX, e.clientY, e.target);
+    };
+    const onMouseUp = (e: MouseEvent) => {
+      if (active && (window.getSelection()?.toString().length ?? 0) > 0) {
+        active = false;
         return;
       }
-      const threshold = pointerType === "mouse" ? 140 : 55;
-      if (Math.abs(dx) >= threshold && Math.abs(dx) > Math.abs(dy) * 1.2) {
-        if (
-          pointerType === "mouse" &&
-          (window.getSelection()?.toString().length ?? 0) > 0
-        )
-          return;
-        fired = true;
-        tracking = false;
-        go(dx);
-      }
+      finish(e.clientX, e.clientY);
     };
 
-    const onEnd = () => {
-      tracking = false;
-    };
-
-    window.addEventListener("pointerdown", onDown, { passive: true });
-    window.addEventListener("pointermove", onMove, { passive: true });
-    window.addEventListener("pointerup", onEnd, { passive: true });
-    window.addEventListener("pointercancel", onEnd, { passive: true });
+    document.addEventListener("touchstart", onTouchStart, { passive: true });
+    document.addEventListener("touchend", onTouchEnd, { passive: true });
+    document.addEventListener("mousedown", onMouseDown, { passive: true });
+    document.addEventListener("mouseup", onMouseUp, { passive: true });
     return () => {
-      window.removeEventListener("pointerdown", onDown);
-      window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerup", onEnd);
-      window.removeEventListener("pointercancel", onEnd);
+      document.removeEventListener("touchstart", onTouchStart);
+      document.removeEventListener("touchend", onTouchEnd);
+      document.removeEventListener("mousedown", onMouseDown);
+      document.removeEventListener("mouseup", onMouseUp);
     };
   }, [pathname, router]);
 

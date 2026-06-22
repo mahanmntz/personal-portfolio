@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { FaSpotify } from "react-icons/fa";
 import { BiSearch, BiSolidQuoteAltLeft } from "react-icons/bi";
 import { Slide } from "../../animation/Slide";
 import EmptyState from "../shared/EmptyState";
@@ -11,14 +10,13 @@ export default function QuotesList({ quotes }: { quotes: QuoteType[] }) {
   const [search, setSearch] = useState("");
 
   const filtered = quotes.filter((quote) =>
-    `${quote.lyric} ${quote.artist} ${quote.song ?? ""}`
+    `${quote.lyric} ${quote.artist}`
       .toLowerCase()
       .includes(search.toLowerCase().trim())
   );
 
   return (
     <section>
-      {/* Search */}
       <Slide>
         <div className="relative mb-10 max-w-md">
           <BiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 text-lg" />
@@ -44,35 +42,13 @@ export default function QuotesList({ quotes }: { quotes: QuoteType[] }) {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((quote, index) => (
             <Slide key={quote._id} delay={index < 6 ? index * 0.04 : 0}>
-              <figure className="group relative flex h-full flex-col dark:bg-primary-bg bg-zinc-50 border border-transparent dark:hover:border-zinc-700 hover:border-zinc-200 rounded-xl p-5 duration-300 hover:-translate-y-1">
+              <figure className="flex h-full flex-col dark:bg-primary-bg bg-zinc-50 border border-transparent dark:hover:border-zinc-700 hover:border-zinc-200 rounded-xl p-5 duration-300 hover:-translate-y-1">
                 <BiSolidQuoteAltLeft className="mb-3 text-2xl text-primary-color/80" />
-
                 <blockquote className="flex-1 text-[0.95rem] italic leading-relaxed dark:text-zinc-200 text-zinc-700">
                   {quote.lyric}
                 </blockquote>
-
-                <figcaption className="mt-4 flex items-center justify-between gap-2 border-t dark:border-zinc-800 border-zinc-200 pt-3">
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold tracking-tight">
-                      — {quote.artist}
-                    </p>
-                    {quote.song && (
-                      <p className="truncate text-xs dark:text-zinc-500 text-zinc-400">
-                        {quote.song}
-                      </p>
-                    )}
-                  </div>
-                  {quote.spotifyUrl && (
-                    <a
-                      href={quote.spotifyUrl}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      aria-label={`Listen to ${quote.artist} on Spotify`}
-                      className="shrink-0 text-lg text-[#1DB954] duration-300 hover:scale-110"
-                    >
-                      <FaSpotify />
-                    </a>
-                  )}
+                <figcaption className="mt-4 border-t dark:border-zinc-800 border-zinc-200 pt-3 text-sm font-semibold tracking-tight">
+                  — {quote.artist}
                 </figcaption>
               </figure>
             </Slide>

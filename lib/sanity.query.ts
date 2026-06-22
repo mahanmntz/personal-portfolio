@@ -104,8 +104,6 @@ export const quotesQuery = groq`*[_type == "quote"] | order(_createdAt desc){
   _createdAt,
   lyric,
   artist,
-  song,
-  spotifyUrl,
 }`;
 
 // Slug lists used by generateStaticParams() to pre-build every page at build time
