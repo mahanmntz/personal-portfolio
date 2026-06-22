@@ -7,6 +7,7 @@ import { sanityFetch } from "@/lib/sanity.client";
 import EmptyState from "../shared/EmptyState";
 import { HiArrowRight } from "react-icons/hi";
 import ScrambleText from "../../animation/ScrambleText";
+import StackIcons from "../shared/StackIcons";
 
 export default async function FeaturedProjects() {
   const projects: ProjectType[] = await sanityFetch({
@@ -55,11 +56,16 @@ export default async function FeaturedProjects() {
                     🪴
                   </div>
                 )}
-                <div>
+                <div className="min-w-0">
                   <h3 className="text-lg tracking-wide mb-1">{project.name}</h3>
                   <p className="text-sm dark:text-zinc-400 text-zinc-600">
                     {project.tagline}
                   </p>
+                  {project.stack && project.stack.length > 0 && (
+                    <div className="mt-3">
+                      <StackIcons stack={project.stack} />
+                    </div>
+                  )}
                 </div>
               </Link>
             ))}

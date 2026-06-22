@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     url: "https://mahanmontazeri.ir/blog",
     description: "Read latest stories from Mahan Montazeri's Blog",
     images:
-      "/logo.png",
+      "/og.png",
   },
 };
 

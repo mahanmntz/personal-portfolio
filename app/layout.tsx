@@ -23,7 +23,7 @@ const options = {
     "Mahan Montazeri is a Software Developer and Technical Writer who is passionate about building solutions and contributing to open source communities",
   url: "https://mahanmontazeri.ir",
   ogImage:
-    "/logo.png",
+    "/og.png",
 };
 
 export const metadata: Metadata = {

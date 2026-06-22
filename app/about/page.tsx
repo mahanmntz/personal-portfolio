@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description:
       "Learn more about my skills, experience and technical background",
     images:
-      "/logo.png",
+      "/og.png",
   },
 };
 

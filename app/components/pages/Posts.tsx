@@ -11,7 +11,7 @@ import { readTime } from "@/app/utils/readTime";
 import { toPlainText } from "@portabletext/react";
 
 const fallbackImage: string =
-  "/logo.png";
+  "/og.png";
 
 export default async function Posts() {
   const posts: PostType[] = await sanityFetch({

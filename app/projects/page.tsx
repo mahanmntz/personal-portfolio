@@ -7,6 +7,7 @@ import EmptyState from "../components/shared/EmptyState";
 import { Slide } from "../animation/Slide";
 import { sanityFetch } from "@/lib/sanity.client";
 import PageHeading from "../components/shared/PageHeading";
+import StackIcons from "../components/shared/StackIcons";
 
 export const metadata: Metadata = {
   title: "Project | Mahan Montazeri",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     url: "https://mahanmontazeri.ir/projects",
     description: "Explore projects built by Mahan Montazeri",
     images:
-      "/logo.png",
+      "/og.png",
   },
 };
 
@@ -56,11 +57,16 @@ export default async function Project() {
                     🪴
                   </div>
                 )}
-                <div>
+                <div className="min-w-0">
                   <h2 className="text-lg tracking-wide mb-1">{project.name}</h2>
                   <div className="text-sm dark:text-zinc-400 text-zinc-600">
                     {project.tagline}
                   </div>
+                  {project.stack && project.stack.length > 0 && (
+                    <div className="mt-3">
+                      <StackIcons stack={project.stack} />
+                    </div>
+                  )}
                 </div>
               </Link>
             ))}

@@ -1,5 +1,6 @@
 import { BiPackage } from "react-icons/bi";
 import { defineField } from "sanity";
+import { techOptions } from "@/app/data/tech";
 
 const project = {
   name: "project",
@@ -28,6 +29,21 @@ const project = {
         "Add a custom slug for the URL or generate one from the name",
       options: { source: "name" },
     },
+    defineField({
+      name: "order",
+      title: "Display Order",
+      type: "number",
+      description:
+        "Lower numbers show first (1, 2, 3…). Leave empty to fall back to newest.",
+    }),
+    defineField({
+      name: "stack",
+      title: "Tech Stack",
+      type: "array",
+      of: [{ type: "string" }],
+      options: { list: techOptions },
+      description: "Frameworks & tools used — shown as logos on the site.",
+    }),
     {
       name: "logo",
       title: "Project Logo",

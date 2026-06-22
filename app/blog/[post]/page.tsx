@@ -28,7 +28,7 @@ type Props = {
 };
 
 const fallbackImage: string =
-  "/logo.png";
+  "/og.png";
 
 // Static export: only build the posts returned below; 404 anything else.
 export const dynamicParams = false;

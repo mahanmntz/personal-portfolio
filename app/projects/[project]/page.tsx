@@ -8,6 +8,7 @@ import { Slide } from "../../animation/Slide";
 import { urlFor } from "@/lib/sanity.image";
 import { sanityFetch } from "@/lib/sanity.client";
 import { BiLinkExternal, BiLogoGithub } from "react-icons/bi";
+import StackIcons from "@/app/components/shared/StackIcons";
 
 type Props = {
   params: {
@@ -16,7 +17,7 @@ type Props = {
 };
 
 const fallbackImage: string =
-  "/logo.png";
+  "/og.png";
 
 // Static export: only build the projects returned below; 404 anything else.
 export const dynamicParams = false;
@@ -101,6 +102,15 @@ export default async function Project({ params }: Props) {
               </a>
             </div>
           </div>
+
+          {project.stack && project.stack.length > 0 && (
+            <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+              <span className="text-sm dark:text-zinc-400 text-zinc-500">
+                Built with
+              </span>
+              <StackIcons stack={project.stack} size="md" />
+            </div>
+          )}
 
           <div className="relative w-full h-40 pt-[52.5%]">
             <Image
