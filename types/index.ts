@@ -61,7 +61,8 @@ export type ProjectType = {
   };
   description: PortableTextBlock[];
   order?: number;
-  stack?: string[];
+  frameworks?: string[];
+  technologies?: string[];
 };
 
 export type PostType = {

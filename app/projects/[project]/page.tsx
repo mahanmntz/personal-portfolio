@@ -103,12 +103,25 @@ export default async function Project({ params }: Props) {
             </div>
           </div>
 
-          {project.stack && project.stack.length > 0 && (
-            <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2">
-              <span className="text-sm dark:text-zinc-400 text-zinc-500">
-                Built with
-              </span>
-              <StackIcons stack={project.stack} size="md" />
+          {((project.frameworks && project.frameworks.length > 0) ||
+            (project.technologies && project.technologies.length > 0)) && (
+            <div className="mb-8 flex flex-col gap-4">
+              {project.frameworks && project.frameworks.length > 0 && (
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                  <span className="w-24 text-sm dark:text-zinc-400 text-zinc-500">
+                    Built with
+                  </span>
+                  <StackIcons stack={project.frameworks} size="md" />
+                </div>
+              )}
+              {project.technologies && project.technologies.length > 0 && (
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                  <span className="w-24 text-sm dark:text-zinc-400 text-zinc-500">
+                    Technologies
+                  </span>
+                  <StackIcons stack={project.technologies} size="md" />
+                </div>
+              )}
             </div>
           )}
 

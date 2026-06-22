@@ -62,9 +62,9 @@ export default async function Project() {
                   <div className="text-sm dark:text-zinc-400 text-zinc-600">
                     {project.tagline}
                   </div>
-                  {project.stack && project.stack.length > 0 && (
+                  {project.frameworks && project.frameworks.length > 0 && (
                     <div className="mt-3">
-                      <StackIcons stack={project.stack} />
+                      <StackIcons stack={project.frameworks} />
                     </div>
                   )}
                 </div>

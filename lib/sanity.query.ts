@@ -52,7 +52,8 @@ export const projectsQuery = groq`*[_type == "project"] | order(coalesce(order, 
   tagline,
   "logo": logo.asset->url,
   order,
-  stack,
+  frameworks,
+  technologies,
 }`;
 
 export const singleProjectQuery = groq`*[_type == "project" && slug.current == $slug][0]{
@@ -66,7 +67,8 @@ export const singleProjectQuery = groq`*[_type == "project" && slug.current == $
     alt,
   },
   tagline,
-  stack,
+  frameworks,
+  technologies,
   description
 }`;
 

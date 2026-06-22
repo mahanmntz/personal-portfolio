@@ -1,6 +1,6 @@
 import { BiPackage } from "react-icons/bi";
 import { defineField } from "sanity";
-import { techOptions } from "@/app/data/tech";
+import { frameworkOptions, technologyOptions } from "@/app/data/tech";
 
 const project = {
   name: "project",
@@ -37,12 +37,22 @@ const project = {
         "Lower numbers show first (1, 2, 3…). Leave empty to fall back to newest.",
     }),
     defineField({
-      name: "stack",
-      title: "Tech Stack",
+      name: "frameworks",
+      title: "Frameworks",
       type: "array",
       of: [{ type: "string" }],
-      options: { list: techOptions },
-      description: "Frameworks & tools used — shown as logos on the site.",
+      options: { list: frameworkOptions },
+      description:
+        "Main frameworks (React, Next.js, Flutter…). Shown as logos on cards & detail.",
+    }),
+    defineField({
+      name: "technologies",
+      title: "Technologies & Tools",
+      type: "array",
+      of: [{ type: "string" }],
+      options: { list: technologyOptions },
+      description:
+        "Languages, databases & tools (Redis, PostgreSQL…). Shown on the project detail page.",
     }),
     {
       name: "logo",
