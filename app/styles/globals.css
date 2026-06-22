@@ -7,6 +7,14 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Kill the blue/grey tap flash on mobile for interactive elements */
 a,
 button {

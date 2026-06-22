@@ -16,6 +16,7 @@ export default function ContributionGraph() {
   const [serverTheme, setServerTheme] = useState<"light" | "dark" | undefined>(
     undefined
   );
+  const [isMobile, setIsMobile] = useState(false);
   const scheme =
     theme === "light" ? "light" : theme === "dark" ? "dark" : systemTheme;
 
@@ -24,6 +25,14 @@ export default function ContributionGraph() {
   useEffect(() => {
     setServerTheme(scheme);
   }, [scheme]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   const today = new Date().getFullYear();
   const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME;
@@ -41,19 +50,20 @@ export default function ContributionGraph() {
 
   return (
     <div className="flex xl:flex-row flex-col gap-4">
-      <div className="dark:bg-primary-bg bg-secondary-bg border dark:border-zinc-800 border-zinc-200 p-4 md:p-8 rounded-lg w-full xl:max-w-fit max-h-fit overflow-x-auto">
+      <div className="no-scrollbar dark:bg-primary-bg bg-secondary-bg border dark:border-zinc-800 border-zinc-200 p-4 md:p-8 rounded-lg w-full xl:max-w-fit max-h-fit overflow-x-auto">
         <GitHubCalendar
           username={username}
           theme={github}
           colorScheme={serverTheme}
-          blockSize={13}
-          blockMargin={4}
-          fontSize={14}
-          showWeekdayLabels
+          blockSize={isMobile ? 11 : 13}
+          blockMargin={isMobile ? 3 : 4}
+          fontSize={isMobile ? 12 : 14}
+          showWeekdayLabels={!isMobile}
+          hideColorLegend={isMobile}
           year={calendarYear}
         />
       </div>
-      <div className="flex xl:flex-col flex-row flex-nowrap xl:flex-wrap overflow-x-auto xl:overflow-visible gap-2 pb-1 xl:pb-0">
+      <div className="no-scrollbar flex xl:flex-col flex-row flex-nowrap xl:flex-wrap overflow-x-auto xl:overflow-visible gap-2 pb-1 xl:pb-0">
         {/* Display only the last five years */}
         {years.slice(0, 5).map((year) => (
           <YearButton
