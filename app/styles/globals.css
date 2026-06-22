@@ -114,7 +114,7 @@ h4 {
 
 /* ===== Cursor glow + click ripple ===== */
 .cursor-glow {
-  background: radial-gradient(circle, rgba(51, 224, 146, 0.45), transparent 60%);
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.5), transparent 60%);
   mix-blend-mode: screen;
 }
 .cursor-ripple {
@@ -125,9 +125,9 @@ h4 {
   border-radius: 9999px;
   background: radial-gradient(
     circle,
-    rgba(51, 224, 146, 0.6),
-    rgba(12, 206, 107, 0.28) 45%,
-    rgba(51, 224, 146, 0) 70%
+    rgba(167, 139, 250, 0.65),
+    rgba(139, 92, 246, 0.3) 45%,
+    rgba(167, 139, 250, 0) 70%
   );
   filter: blur(2px);
   animation: cursor-ripple-anim 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
