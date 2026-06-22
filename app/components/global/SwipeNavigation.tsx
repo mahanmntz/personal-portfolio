@@ -64,12 +64,12 @@ export default function SwipeNavigation() {
       const dy = e.clientY - startY;
 
       // Vertical scroll wins — stop tracking this gesture.
-      if (Math.abs(dy) > 44 && Math.abs(dy) > Math.abs(dx)) {
+      if (Math.abs(dy) > 70 && Math.abs(dy) > Math.abs(dx) * 1.2) {
         tracking = false;
         return;
       }
-      const threshold = pointerType === "mouse" ? 150 : 70;
-      if (Math.abs(dx) >= threshold && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      const threshold = pointerType === "mouse" ? 140 : 55;
+      if (Math.abs(dx) >= threshold && Math.abs(dx) > Math.abs(dy) * 1.2) {
         if (
           pointerType === "mouse" &&
           (window.getSelection()?.toString().length ?? 0) > 0

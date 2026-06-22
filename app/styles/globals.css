@@ -4,6 +4,14 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Kill the blue/grey tap flash on mobile for interactive elements */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
 }
 
 @import "prism.css";

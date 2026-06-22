@@ -12,7 +12,7 @@ export default function YearButton({
   return (
     <button
       onClick={onClick}
-      className={`rounded-lg text-center px-4 py-2 border border-transparent dark:hover:border-zinc-700 hover:border-zinc-200 duration-100 text-sm font-medium ${
+      className={`shrink-0 whitespace-nowrap rounded-lg text-center px-3.5 py-1.5 md:px-4 md:py-2 border border-transparent dark:hover:border-zinc-700 hover:border-zinc-200 duration-100 text-sm font-medium ${
         year === currentYear
           ? "dark:bg-secondary-color bg-secondary-color dark:hover:border-transparent dark:text-zinc-800 text-white hover:border-transparent"
           : "dark:bg-primary-bg bg-zinc-50 dark:text-white text-zinc-800"

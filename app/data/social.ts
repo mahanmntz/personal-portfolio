@@ -16,12 +16,6 @@ import { FaProductHunt } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { SiCodewars, SiLinktree } from "react-icons/si";
 
-/**
- * ❇️  سوشال مدیای خودت رو همین‌جا تنظیم کن.
- *  - فقط `url` هر آیتم رو با لینک خودت عوض کن (الان روی yousername = mahanmntz گذاشته شده).
- *  - آیتمی که نمی‌خوای، کل بلاکش رو پاک کن.
- *  - `status: "social"` → بخش شبکه‌های اجتماعی.
- */
 export const socialLinks = [
   {
     id: 1,

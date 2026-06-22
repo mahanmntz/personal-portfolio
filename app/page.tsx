@@ -17,7 +17,7 @@ export default async function Home() {
   });
 
   return (
-    <main className="max-w-7xl mx-auto md:px-16 px-6 lg:mt-20 mt-10">
+    <main className="max-w-7xl mx-auto md:px-16 px-6 lg:mt-8 mt-4">
       <section className="flex xl:flex-row flex-col xl:items-center items-start xl:justify-center justify-between gap-x-12 mb-12">
         <div key={profile?._id} className="lg:max-w-2xl max-w-2xl">
           <Slide>

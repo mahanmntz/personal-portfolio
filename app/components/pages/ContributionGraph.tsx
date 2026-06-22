@@ -53,7 +53,7 @@ export default function ContributionGraph() {
           year={calendarYear}
         />
       </div>
-      <div className="flex justify-start xl:flex-col flex-row flex-wrap gap-2">
+      <div className="flex xl:flex-col flex-row flex-nowrap xl:flex-wrap overflow-x-auto xl:overflow-visible gap-2 pb-1 xl:pb-0">
         {/* Display only the last five years */}
         {years.slice(0, 5).map((year) => (
           <YearButton
